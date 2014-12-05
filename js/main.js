@@ -105,6 +105,7 @@
 			playFirstVideo();
 		});
 		thumbs.on('click','.layer_play', function(){
+			firstVideo = false;
 			changeMainVideo($(this).data('idvideo'), true, $(this).closest('.thumb'));
 		});
 	});
