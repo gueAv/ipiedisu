@@ -43,6 +43,9 @@
 	
 	function onPlayerStateChange(event){
 		if (event.data == YT.PlayerState.PLAYING) {
+			if(!mobile){
+				mainplayer.setPlaybackQuality('default');
+			}
 			mainvideo_box.find('.to_play').hide();
 		} else if (event.data == YT.PlayerState.PAUSED) {
 
@@ -68,7 +71,7 @@
 			//mainplayer.loadVideoById({'videoId': id , 'startSeconds': 0 });
 			div.addClass('hide');
 			$('html,body').animate({
-			        scrollTop: $(".mainvideo_cont").offset().top},
+			        scrollTop: 0},
 			        'slow');
 		}else{
 			mainplayer = new YT.Player('mainplayer', {
@@ -81,9 +84,7 @@
 						'onStateChange': onPlayerStateChange
 					}
 				});
-			if(!mobile){
-				mainplayer.setPlaybackQuality('default');
-			}
+			
 			
 		}
 		
@@ -94,6 +95,7 @@
 			timeoutFirstVideo =  setTimeout(playFirstVideo,50);
 			return;
 		}
+		mainvideo_box.find('.to_play').hide();
 		mainplayer.playVideo();
 	}
 
@@ -106,6 +108,7 @@
 		});
 		thumbs.on('click','.layer_play', function(){
 			firstVideo = false;
+			mainvideo_box.find('.to_play').hide();
 			changeMainVideo($(this).data('idvideo'), true, $(this).closest('.thumb'));
 		});
 	});
