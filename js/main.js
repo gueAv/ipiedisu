@@ -1,5 +1,5 @@
 (function($) {
-	var yt_api_ready = false, mainvideo_box,thumbs, mainplayer, timeoutApi, timeoutFirstVideo,  firstVideo = true;
+	var yt_api_ready = false, mainvideo_box,thumbs,mobile=false, mainplayer, timeoutApi, timeoutFirstVideo,  firstVideo = true;
 	var params = {
 		'controls': 1,
 		'modestbranding': 1,
@@ -13,6 +13,9 @@
 	if (!$('html').hasClass('lt-ie10')) {
 		params['html5'] = 1;
 	};
+	if($('html').hasClass('mobile')){
+		mobile = true;
+	}
 
 	function initYoutube(){
 		// Load the IFrame Player API code asynchronously.
@@ -64,6 +67,9 @@
 			mainplayer.loadVideoById(id);
 			//mainplayer.loadVideoById({'videoId': id , 'startSeconds': 0 });
 			div.addClass('hide');
+			$('html,body').animate({
+			        scrollTop: $(".mainvideo_cont").offset().top},
+			        'slow');
 		}else{
 			mainplayer = new YT.Player('mainplayer', {
 					height: '100%',
@@ -75,7 +81,10 @@
 						'onStateChange': onPlayerStateChange
 					}
 				});
-			mainplayer.setPlaybackQuality('default');
+			if(!mobile){
+				mainplayer.setPlaybackQuality('default');
+			}
+			
 		}
 		
 	}

@@ -137,6 +137,9 @@ textarea {
 		z-index: 10;
 		background-position: center center;
 	}
+	.thumb .to_play{
+		bottom: 40px;
+	}
 	.mainvideo .to_play{
 		background-size: cover;
 	}
@@ -145,6 +148,9 @@ textarea {
 		background-position: center center;
 		background-repeat: no-repeat;
 		cursor: pointer;
+	}
+	.thumb .layer_play{
+		background-size: 20%;
 	}
 	#mainplayer{
 		z-index: 1;
@@ -165,11 +171,22 @@ textarea {
 		width: 30%;
 		margin: 1%;
 		position: relative;
-		padding-bottom: 30%;
 		display: inline-block;
+	}
+	.thumb:before{
+	    content: "";
+	    display: block;
+	    padding-top: 52%;
 	}
 	.thumb.hide{
 		display: none;
+	}
+	.thumb .label{
+		position: relative;
+		z-index: 50;
+		background-color: #000;
+		color: #fff;
+		padding: 10px 0;
 	}
 	footer{
 		width: 70%;
@@ -181,8 +198,35 @@ textarea {
 		font-size: 13px;
 	}
 
-
-
+@media only screen and (max-width: 900px) {
+	/* Style adjustments for viewports that meet the condition */
+	.intro, .main_video_limit, .thumb_cont, header, footer{
+		width: 90%;
+	}
+}
+@media only screen and (max-width: 800px) {
+	/* Style adjustments for viewports that meet the condition */
+	.main_video_limit{
+		width: 100%;
+	}
+	.intro, .thumb_cont, header, footer{
+		width: 97%;
+	}
+}
+@media only screen and (max-width: 600px) {
+	.thumb{
+		width: 98%;
+	}
+	.thumb .to_play{
+		background-size: cover;
+	}
+	header img{
+		max-width: 70px;
+	}
+	footer{
+		text-align: center;
+	}
+}
 
 
 
