@@ -1,5 +1,5 @@
 (function($) {
-	var yt_api_ready = false, mainvideo_box,thumbs,mobile=false, mainplayer, timeoutApi, timeoutFirstVideo,  firstVideo = true;
+	var yt_api_ready = false, mainvideo_box,thumbs,mobile=false, mainplayer, timeoutApi, timeoutFirstVideo, timeoutFirstVideo2,  firstVideo = true;
 	var params = {
 		'controls': 1,
 		'modestbranding': 1,
@@ -64,6 +64,11 @@
 		}
 			
 		if(show_thumb){
+			if (firstVideo) {	
+				clearTimeout(timeoutFirstVideo2);
+				timeoutFirstVideo2 =  setTimeout(changeMainVideo(id, show_thumb, div),50);
+				return;
+			}
 			thumbs.removeClass('hide');
 			//mainplayer.pauseVideo();
 			
